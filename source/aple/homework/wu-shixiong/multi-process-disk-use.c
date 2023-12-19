@@ -11,9 +11,13 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-// gcc  multi-process-producer-consumer.c -lpthread
+<<<<<<< HEAD
+    // gcc  multi-process-producer-consumer.c -lpthread
+=======
+    // gcc  multi-process-disk-use.c -lpthread
+>>>>>>> ae7c601 (like du)
 
-typedef struct my_shared_st {
+    typedef struct my_shared_st {
     sem_t *mutex; // 互斥信号量，一次只有一个进程更新共享内存
     off_t used_space; // 文件占用的空间大小，单位：字节
 } my_shared_t;
@@ -115,7 +119,7 @@ main(int argc, char *argv[])
     }
     const char *target_path = argv[1]; // 命令行指定目标目录
 
-    // 申请一个 off_t 大小的共享空间
+    // 申请一个 my_shared_t 大小的共享空间
     int shmid = shmget(IPC_PRIVATE, SHM_SIZE, IPC_CREAT | 0600);
     if (shmid == -1) {
         perror("shamget failed");
